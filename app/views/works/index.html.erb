@@ -1,11 +1,1 @@
-<h1>Awesome Media Ranker</h1>
 
-<ul>
-<% @works.each do |work| %>
-<li>
-<%= link_to work.title, works_path(work) %>
-<%= link_to "Edit", edit_work_path(work) %> 
-<%= link_to "Delete", work_path(work), method: :delete, data: {confirm: "Are you sure?"}%>
-</li>
-<%end%>
-</ul>
