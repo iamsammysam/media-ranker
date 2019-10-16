@@ -2,9 +2,9 @@ class WorksController < ApplicationController
   
   def index
     @works = Work.all  
-    @movies = Work.sort_by_category(movie)
-    @books = Work.sort_by_category(book)
-    @albums = Work.sort_by_category(album)
+    # @movies = Work.sort_by_category(movie)
+    @books = Work.sort_by_category("book")
+    @albums = Work.sort_by_category("album")
   end
   
   def show
@@ -24,7 +24,7 @@ class WorksController < ApplicationController
   def create
     @work = Work.new(passenger_params) 
     if @pwork.save 
-      # redirect_to passenger_path(@passenger.id)
+      # redirect_to work_path(@work.id)
       return
     else
       render :new
@@ -36,7 +36,7 @@ class WorksController < ApplicationController
     @work = Work.find_by(id: params[:id])
     
     if @work.nil?
-      # redirect_to passengers_path
+      # redirect_to works_path
       return
     end
   end
@@ -62,7 +62,7 @@ class WorksController < ApplicationController
     end
     
     @work.destroy
-    # redirect_to passengers_path
+    # redirect_to works_path
     return
   end
   
