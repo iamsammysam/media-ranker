@@ -1,10 +1,9 @@
 class WorksController < ApplicationController
   
-  def index
-    @works = Work.all  
-    # @movies = Work.sort_by_category(movie)
-    # @books = Work.sort_by_category("book")
-    # @albums = Work.sort_by_category("album")
+  def index 
+    # @movies = Work.sort_by_category("movie").take(10)
+    @books = Work.sort_by_category("book")
+    @albums = Work.sort_by_category("album")
   end
   
   def show
