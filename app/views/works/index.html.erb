@@ -15,8 +15,8 @@
         </tr>
       </thead>
       <tbody>
-            <%# <td>3</td> %>
-            <% @albums.each do |album| %>
+          <%# <td>3</td> %>
+          <% @albums.each do |album| %>
           <tr>
             <td><%= album.title %></td>
             <td><%= album.creator %></td>
@@ -27,6 +27,7 @@
       </tbody>
     </table>
   </section>
+  
   <section class="media-table">
     <h4>Books</h4>
     <table class="table">
@@ -40,22 +41,24 @@
         </tr>
       </thead>
       <tbody>
-      <% @books.each do |book| %>
-      <tr>
-      <td><%= book.title %></td>
-      <td><%= book.creator %></td>
-      <td><%= book.publication_year%></td>
-      </tr>
-      <%end%>
+          <%# <td>3</td> %>
+          <% @books.each do |book| %>
+          <tr>
+            <td><%= book.title %></td>
+            <td><%= book.creator %></td>
+            <td><%= book.publication_year%></td>
+          </tr>
+          <%end%>
       </tbody>
     </table>
   </section>
+  
   <section class="media-table">
     <h4>Movies</h4>
     <table class="table">
       <thead>
         <tr>
-          <th width="80">Votes</th>
+          <%# <th width="80">Votes</th> %>
           <th>Title</th>
           <th>Created By</th>
           <th width="100">Published</th>
@@ -63,21 +66,19 @@
         </tr>
       </thead>
       <tbody>
+          <%# <td>3</td> %>
+          <% @movies.each do |movie| %>
           <tr>
-            <td>1</td>
-            <td><a href="/works/506">Princess Sparklepants</a></td>
-            <td></td>
-            <td></td>
-            <td><a class="btn btn-primary" rel="nofollow" data-method="post" href="/works/506/upvote">Upvote</a></td>
+            <td><%= movie.title %></td>
+            <td><%= movie.creator %></td>
+            <td><%= movie.publication_year%></td>
           </tr>
+          <%end%>
       </tbody>
     </table>
   </section>
 
-<a class="btn btn-secondary" href="/">View top media</a>
-<a class="btn btn-primary" href="/works/new">Add a new work</a>
-
+    <a class="btn btn-secondary" href="/">View top media</a>
+    <a class="btn btn-primary" href="/works/new">Add a new work</a>
   </main>
-
-
 </body>

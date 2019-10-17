@@ -1,7 +1,8 @@
 class WorksController < ApplicationController
   
   def index 
-    # @movies = Work.sort_by_category("movie").take(10)
+    @works = Work.all
+    @movies = Work.sort_by_category("movie")
     @books = Work.sort_by_category("book")
     @albums = Work.sort_by_category("album")
   end
@@ -22,7 +23,7 @@ class WorksController < ApplicationController
   
   def create
     @work = Work.new(passenger_params) 
-    if @pwork.save 
+    if @work.save 
       # redirect_to work_path(@work.id)
       return
     else
