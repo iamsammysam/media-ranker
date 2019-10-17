@@ -12,7 +12,7 @@ class WorksController < ApplicationController
     @work = Work.find_by(id: work_id)
     
     if @work.nil?
-      # redirect_to works_path
+      redirect_to works_path
       return
     end   
   end
@@ -22,9 +22,9 @@ class WorksController < ApplicationController
   end
   
   def create
-    @work = Work.new(passenger_params) 
+    @work = Work.new(work_params) 
     if @work.save 
-      # redirect_to work_path(@work.id)
+      redirect_to work_path(@work.id)
       return
     else
       render :new
@@ -36,7 +36,7 @@ class WorksController < ApplicationController
     @work = Work.find_by(id: params[:id])
     
     if @work.nil?
-      # redirect_to works_path
+      redirect_to works_path
       return
     end
   end
@@ -44,7 +44,7 @@ class WorksController < ApplicationController
   def update
     @work= Work.find_by(id: params[:id])
     if @work.update(work_params)
-      # redirect_to root_path
+      redirect_to root_path
       return
     else
       render :edit
@@ -62,7 +62,7 @@ class WorksController < ApplicationController
     end
     
     @work.destroy
-    # redirect_to works_path
+    redirect_to works_path
     return
   end
   
