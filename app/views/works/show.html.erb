@@ -1,0 +1,33 @@
+  <main>
+    <section>
+  <h2><%= @work.title %></h2>
+  <p>Created by: <%= @work.creator %> </p>
+  <p>Published: <%= @work.publication_year %></p>
+  <p></p>
+  <section>
+    <a class="btn btn-primary" href="/">Back to media ranks</a>
+    <a class="btn btn-primary" <%= link_to "Edit", edit_work_path(@work), method: :get %> 
+    <a class="btn btn-primary" rel="nofollow" data-method="post" href="/works/420/upvote">Upvote</a>
+    <a class="btn btn-danger" <%= link_to "Delete", work_path(@work), method: :delete, data: {confirm: "Are you sure?"} %>
+  </section>
+</section>
+
+<section class="works-votes__container">
+  <h3 class="works-votes__header">12 Votes for this Album</h3>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>User</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a href="/users/316">meeeee</a></td>
+        <td>Oct 17, 2019</td>
+      
+      </tr><tr>
+        <td><a href="/users/412">you</a></td>
+        <td>Oct 17, 2019</td>
+      
+</tr></tbody></table></section></main></body>
