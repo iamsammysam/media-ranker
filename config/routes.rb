@@ -6,10 +6,7 @@ Rails.application.routes.draw do
   
   resources :users
   resources :votes
-<<<<<<< Updated upstream
   resources :works
-  
-=======
   
   resources :works do
     resources :votes
@@ -19,7 +16,7 @@ Rails.application.routes.draw do
   post "/login", to: "users#login"
   post "/logout", to: "users#logout", as: "logout"
   get "/users/current", to: "users#current", as: "current_user"
->>>>>>> Stashed changes
+  >>>>>>> Stashed changes
 end
 
 
