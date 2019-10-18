@@ -2,6 +2,16 @@
   <main>
     <h2>List of Works</h2>
 
+<ul>
+<% @works.each do |work| %>
+<li>
+<%= link_to work.title, works_path(work) %>
+<%= link_to "Edit", edit_work_path(work) %> 
+<%= link_to "Delete", work_path(work), method: :delete, data: {confirm: "Are you sure?"}%>
+</li>
+<%end%>
+</ul>
+
   <section class="media-table">
     <h4>Albums</h4>
     <table class="table">
@@ -21,7 +31,7 @@
             <td><%= link_to album.title, work_path(album) %></td>
             <td><%= album.creator %></td>
             <td><%= album.publication_year%></td>
-            <%# <td><a class="btn btn-primary" rel="nofollow" data-method="post" href="/works/476/upvote">Upvote</a></td> %>
+            <td><a class="btn btn-primary" <%= link_to "Upvote", work_votes_path(album.id), method: :post %></a></td>
           </tr>
           <%end%>
       </tbody>
@@ -47,6 +57,7 @@
             <td><%= link_to book.title, work_path(book) %></td>
             <td><%= book.creator %></td>
             <td><%= book.publication_year%></td>
+            <td><a class="btn btn-primary" <%= link_to "Upvote", work_votes_path(book.id), method: :post %></a></td>
           </tr>
           <%end%>
       </tbody>
@@ -69,9 +80,10 @@
           <%# <td>3</td> %>
           <% @movies.each do |movie| %>
           <tr>
-            <td><%= link_to movie.title, work_path(movie) %></td>
+            <td><%= link_to movie.title, work_path(movie)%></td>
             <td><%= movie.creator %></td>
             <td><%= movie.publication_year%></td>
+            <td><a class="btn btn-primary" <%= link_to "Upvote", work_votes_path(movie.id), method: :post %></a></td>
           </tr>
           <%end%>
       </tbody>

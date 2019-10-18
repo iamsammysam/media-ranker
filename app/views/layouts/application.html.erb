@@ -10,7 +10,7 @@
   </head>
 
   <body>
-  <header class="app-header__header">
+    <header class="app-header__header">
     <h1>
       <a href="/">Awesome Media Ranker</a>
       <small>Ranking the Best of Everything</small>
@@ -28,21 +28,25 @@
           <%= link_to "Add a new work", new_work_path, class: "nav-link"%>
         </li>
         <li class="nav-item app-header__nav_item">
-          <a class="nav-link" href="/users">View all users</a>
+          <%= link_to "View all users", users_path, class: "nav-link"%>
         </li>
       </ul>
       <ul class="nav app-header__user-nav-container">
-
+        <% if session[:user_id].nil? %>
         <li class="nav-item app-header__nav_item">
-          <a class="btn btn-primary" href="/users/316">Logged in as me</a>
+          <%= link_to "Login", login_path, :class=>"btn btn-primary"%>
         </li>
+        <%else%>
         <li class="nav-item app-header__nav_item">
-          <a class="btn btn-primary" rel="nofollow" data-method="post" href="/logout">Log Out</a>
+          <%= link_to "Logout", logout_path, :class=>"btn btn-primary", method: :posts%>
         </li>
+        <%end%>
       </ul>
     </nav>
-  </header>
 
+    </header>
     <%= yield %>
   </body>
 </html>
+
+<%# Logged in as <%= User.find_by(id: session[:user_id]).username %>

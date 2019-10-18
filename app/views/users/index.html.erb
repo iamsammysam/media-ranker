@@ -10,21 +10,13 @@
     </tr>
   </thead>
   <tbody>
+      <% @users.each do |user| %>
       <tr>
-        <td><a href="/users/285">yo</a></td>
-        <td>1</td>
+        <td><%= link_to user.name %></td>
+        <td>1111</td>
         <td>Apr 22, 2019</td>
       </tr>
-      <tr>
-        <td><a href="/users/263">Kim!!!!</a></td>
-        <td>0</td>
-        <td>Apr 22, 2019</td>
-      </tr>
-      <tr>
-        <td><a href="/users/264">dhbgndtndfbdfbdf</a></td>
-        <td>0</td>
-        <td>Apr 22, 2019</td>
-      </tr>
+      <%end%>    
   </tbody>
 </table>
 
