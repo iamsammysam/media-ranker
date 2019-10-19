@@ -1,7 +1,9 @@
 class HomepagesController < ApplicationController
   def index
-    @movies = Work.sort_by_category("movie")#.take(10)
-    @books = Work.sort_by_category("book")#.take(10)
-    @albums = Work.sort_by_category("album")#.take(10)
+    @movies = Work.top_ten("movie")
+    @books = Work.top_ten("book")
+    @albums = Work.top_ten("album")
+    
+    @spotlight = Work.spotlight
   end 
 end

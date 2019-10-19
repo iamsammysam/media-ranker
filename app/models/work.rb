@@ -12,18 +12,15 @@ class Work < ApplicationRecord
     self.where(category: category)
   end
   
-  def self.find_work
-    driver = Driver.find_by(available: true)
-    return driver.id
-    
-    if driver == nil
-      head :not_found
-      return
-    else 
-      return driver.id
-    end
+  def self.top_ten(category)
+    works = Work.sort_by_category(category)
+    top_ten = works.sort_by {|work| -work.votes.count}
+    return top_ten 
   end
   
-  
+  def self.spotlight
+    works = Work.all
+    spotlight = works.max_by {|work| work.votes.length}
+    return spotlight
+  end
 end
-

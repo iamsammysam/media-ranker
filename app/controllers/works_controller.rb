@@ -1,5 +1,4 @@
 class WorksController < ApplicationController
-  
   def index 
     @works = Work.all
     @movies = Work.sort_by_category("movie")
@@ -44,8 +43,7 @@ class WorksController < ApplicationController
       render :new
       return
     end
-  end
-  
+  end 
   
   def update
     @work= Work.find_by(id: params[:id])
