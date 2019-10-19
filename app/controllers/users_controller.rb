@@ -21,7 +21,7 @@ class UsersController < ApplicationController
     name = params[:user][:name]
     user = User.find_by(name: name)
     
-    if @user
+    if user
       session[:user_id] = user.id
       # flash[:success] = "Successfully logged in as returning user #{username}"
     else 
@@ -34,22 +34,22 @@ class UsersController < ApplicationController
     redirect_to root_path
   end 
   
-  def current
-    @current_user = User.find_by(id: session[:user_id])
-    unless @current_user
-      flash[:error] = "You must be logged in to see this page"
-      redirect_to root_path
-    end
-  end
+  # def current
+  #   @current_user = User.find_by(id: session[:user_id])
+  #   unless @current_user
+  #     flash[:error] = "You must be logged in to see this page"
+  #     redirect_to root_path
+  #   end
+  # end
   
   def logout
     session[:user_id] = nil
     redirect_to root_path
   end
   
-  private
+  # private
   
-  def user_params
-    return params.require(:user).permit(:name)
-  end
+  # def user_params
+  #   return params.require(:user).permit(:name)
+  # end
 end
