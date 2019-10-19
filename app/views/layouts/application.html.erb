@@ -51,6 +51,19 @@
     
     </nav>
     </header>
+
+    <section class="flash">
+      <% flash.each do |name, message| %>
+        <div class="alert alert-<%= name %>"><%= message %>
+      <% if @error != nil %>
+      <ul>
+        <li><%= @error %></li>
+      </ul>
+      <% end %>
+      </div><br>
+      <% end %>
+    </section>
+
     <%= yield %>
   </body>
 </html>

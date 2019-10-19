@@ -12,6 +12,7 @@ class WorksController < ApplicationController
     @work = Work.find_by(id: work_id)
     
     if @work.nil?
+      flash[:warning] = "Work invalid."
       redirect_to works_path
       return
     end   
@@ -21,32 +22,40 @@ class WorksController < ApplicationController
     @work = Work.new
   end
   
-  def create
-    @work = Work.new(work_params) 
-    if @work.save 
-      redirect_to work_path(@work.id)
-      return
-    else
-      render :new
-      return
-    end
-  end
-  
   def edit
     @work = Work.find_by(id: params[:id])
     
     if @work.nil?
+      flash[:warning] = "Can't edit, work invalid."
       redirect_to works_path
       return
     end
   end
   
-  def update
-    @work= Work.find_by(id: params[:id])
-    if @work.update(work_params)
-      redirect_to root_path
+  def create
+    @work = Work.new(work_params) 
+    
+    if @work.save 
+      flash[:success] = "Work successfully created."
+      redirect_to work_path(@work.id)
       return
     else
+      flash[:warning] = "Can't create work."
+      render :new
+      return
+    end
+  end
+  
+  
+  def update
+    @work= Work.find_by(id: params[:id])
+    
+    if @work.update(work_params)
+      flash[:sucess] = "Work successfully updated."
+      redirect_to work_path(@work.id)
+      return
+    else
+      flash[:warning] = "Can't update work."
       render :edit
       return
     end
@@ -61,9 +70,14 @@ class WorksController < ApplicationController
       return
     end
     
-    @work.destroy
-    redirect_to works_path
-    return
+    if @work.destroy
+      flash[:success] = "Work successfully deleted."
+      redirect_to works_path
+      return
+    else
+      flash[:warning] = "Can't delete work."
+      redirect_to works_path
+    end 
   end
   
   private

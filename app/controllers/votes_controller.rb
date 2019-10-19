@@ -1,37 +1,35 @@
-class VotesController < ApplicationController
-  # def index
-  #   @votes = Vote.all
-  # end
-  
-  # def show
-  #   vote_id = params[:id]
-  #   @vote = Vote.find_by(id: vote_id)
-  
-  #   if @vote.nil?
-  #     redirect_to votes_path
-  #     return 
-  #   end   
-  # end
-  
-  # def new
-  #   @vote = Vote.new
-  # end
-  
+class VotesController < ApplicationController  
   def create
-    vote = Vote.create(
-    # date: Date.today
-    user_id: current_user.id,
-    work_id: params[:work_id]
-    )
-    
-    if vote.id
-      redirect_to work_path(params[:work_id])
+    if current_user.nil?
+      flash[:warning] = "You must be logged in to vote."
       return
+      # end 
+      
+      # if vote_check == false
+      #   flash[:error] = "You already voted for this work."
+      #   redirect_to work_path
+      #   return
     else
-      redirect_to root_path
-      return
+      vote = Vote.create(
+      # date: Date.today
+      user_id: current_user.id,
+      work_id: params[:work_id]
+      )
+      
+      vote.id
+      flash[:success] = "You just voted!"
+      redirect_to work_path(params[:work_id])
+      return    
     end
   end
+  
+  # def vote_check
+  #   current_user.votes.each do |vote|
+  #     if vote.work_id == work.id
+  #       return false
+  #     end 
+  #   end 
+  # end 
   
   private
   
