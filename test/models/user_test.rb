@@ -22,5 +22,19 @@ describe User do
       expect(@user.valid?).must_equal false
       expect(@user.errors.messages).must_include :name
     end
-  end 
-end 
+  end
+  
+  describe "relationships" do 
+    before do
+      @work = Work.create(category: "music", title: "smaple title", creator: "sample creator", description: "great music", publication_year: 2000)
+      @user = User.create(name: "test user")
+      
+      @vote = Vote.create(user_id: @user.id , work_id: @work.id)
+      @vote = Vote.create(user_id: @user.id , work_id: @work.id)
+    end
+    
+    it "can have many votes" do
+      expect(@user.votes.count).must_equal 2
+    end
+  end
+end
