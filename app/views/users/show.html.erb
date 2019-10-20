@@ -1,3 +1,4 @@
+<body>
 <main>
 <h2>User Summary: <%=@user.name%></h2>
 <p>Joined site <%=@user.created_at.to_date%></p>
@@ -15,7 +16,7 @@
       </tr>
     </thead>
     <tbody>
-        <%# <% if @user.votes.count > 0 %>
+        <% if @user.votes.count > 0 %>
         <% @user.votes.each do |vote| %>
         <tr>
           <td><%= link_to vote.work.title, work_path(vote.work)%></td>
@@ -25,7 +26,7 @@
           <td><%= (vote.created_at).to_date%></td>
         </tr>
         <%end%>
-      <%# <%end%>
+      <%end%>
     </tbody>
   </table>
 </section>
@@ -33,3 +34,4 @@
 <a class="btn btn-secondary" href="/users">See all Users</a>
 <a class="btn btn-primary" href="/">Back to Media List</a>
 </main>
+</body>
