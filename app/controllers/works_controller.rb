@@ -40,7 +40,7 @@ class WorksController < ApplicationController
       return
     else
       flash[:warning] = "Can't create work."
-      render :new
+      redirect_to works_path
       return
     end
   end 
