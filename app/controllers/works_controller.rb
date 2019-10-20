@@ -34,7 +34,7 @@ class WorksController < ApplicationController
   def create
     @work = Work.new(work_params) 
     
-    if @work.save 
+    if @work.save
       flash[:success] = "Work successfully created."
       redirect_to work_path(@work.id)
       return
