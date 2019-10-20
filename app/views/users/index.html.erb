@@ -10,10 +10,11 @@
     </tr>
   </thead>
   <tbody>
-      <% @users.each do |user| %>
+      <% @ordered_users = @users.sort_by {|user| user.votes.length} %>
+      <% @ordered_users.reverse.each do |user| %>
       <tr>
-        <td><%= link_to user.name %></td>
-        <td>1111</td>
+        <td><%= link_to user.name, user_path(user) %></td>
+        <td><%= user.votes.count %></td>
         <td><%= (user.created_at).to_date %></td>
       </tr>
       <%end%>    

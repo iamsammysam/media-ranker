@@ -33,6 +33,25 @@ class VotesController < ApplicationController
     end 
   end 
   
+  def destroy
+    vote_id = params[:id]
+    @vote = Vote.find_by(id: vote_id)
+    
+    if @vote.nil?
+      head :not_found
+      return
+    end
+    
+    if @vote.destroy
+      flash[:success] = "Work successfully deleted."
+      redirect_to works_path
+      return
+    else
+      flash[:warning] = "Can't delete work."
+      redirect_to works_path
+    end 
+  end
+  
   private
   
   def vote_params
