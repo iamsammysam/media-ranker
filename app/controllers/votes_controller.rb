@@ -1,35 +1,31 @@
 class VotesController < ApplicationController  
   def create
+    @work = Work.find_by(id: params[:work_id])
+    
     if current_user.nil?
       flash[:warning] = "You must be logged in to vote."
       return
     end 
     
-    if vote_check? 
-      @work = Work.find_by(id: params[:work_id])
+    if @work.votes.find_by(user_id: current_user.id)
+      flash[:warning] = "Can't upvote. You already voted for this work."
+      redirect_to works_path
+      return
       
+    else
       vote = Vote.create(
       user_id: current_user.id,
       work_id: params[:work_id]
       )
       
-      vote.id
-      flash[:success] = "Your vote was successfully accepted!"
-      redirect_to works_path
-      return
-      
-    else
-      flash[:warning] = "Can't upvote. You already voted for this work."
-      redirect_to works_path
-      return
+      if  vote.id
+        flash[:success] = "Your vote was successfully accepted!"
+        redirect_to works_path
+        return
+      else 
+        flash[:warning] = "Upvote failed."         
+      end
     end
-  end
-  
-  def vote_check?
-    @work = Work.find_by(id: params[:work_id])
-    if @work.votes.find_by(user_id: current_user.id)
-      return false
-    end 
   end 
   
   def destroy
