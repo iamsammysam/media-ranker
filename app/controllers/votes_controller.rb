@@ -6,7 +6,7 @@ class VotesController < ApplicationController
     end 
     
     if vote_check? 
-      @work = Work.find_by(id: params[:id])
+      @work = Work.find_by(id: params[:work_id])
       
       vote = Vote.create(
       user_id: current_user.id,
@@ -14,22 +14,21 @@ class VotesController < ApplicationController
       )
       
       vote.id
-      flash[:success] = "You just voted!"
-      redirect_to work_path(params[:work_id])
+      flash[:success] = "Your vote was successfully accepted!"
+      redirect_to works_path
       return
       
     else
-      flash[:warning] = "You already voted for this work."
-      redirect_to work_path(params[:work_id])
+      flash[:warning] = "Can't upvote. You already voted for this work."
+      redirect_to works_path
       return
     end
   end
   
   def vote_check?
-    current_user.votes.each do |vote|
-      if vote.work_id == params[:work_id]
-        return false
-      end 
+    @work = Work.find_by(id: params[:work_id])
+    if @work.votes.find_by(user_id: current_user.id)
+      return false
     end 
   end 
   
@@ -57,4 +56,4 @@ class VotesController < ApplicationController
   def vote_params
     return params.require(:vote).permit(:user_id, :work_id)
   end
-end
+end 
