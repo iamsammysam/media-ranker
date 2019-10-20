@@ -49,7 +49,7 @@ class WorksController < ApplicationController
     @work= Work.find_by(id: params[:id])
     
     if @work.update(work_params)
-      flash[:sucess] = "Work successfully updated."
+      flash[:success] = "Work successfully updated."
       redirect_to work_path(@work.id)
       return
     else

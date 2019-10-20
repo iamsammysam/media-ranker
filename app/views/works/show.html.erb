@@ -1,5 +1,5 @@
-  <main>
-    <section>
+<main>
+<section>
   <h2><%= @work.title %></h2>
   <p>Created by: <%= @work.creator %> </p>
   <p>Published: <%= @work.publication_year %></p>
@@ -13,7 +13,7 @@
 </section>
 
 <section class="works-votes__container">
-  <h3 class="works-votes__header">X Votes for this Album</h3>
+  <h3 class="works-votes__header"> <%=@work.votes.count%> vote(s) for this <%=@work.category%></h3>
   <table class="table">
     <thead>
       <tr>
@@ -22,12 +22,13 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td><a href="/users/412">you</a></td>
-        <td>Oct 17, 2019</td>
-      
-      </tr><tr>
-        <td><a href="/users/412">you</a></td>
-        <td>Oct 17, 2019</td>
-      
-</tr></tbody></table></section></main></body>
+      <% @work.votes.each do |vote| %>
+        <tr>
+          <td><%= link_to vote.user.name, user_path(vote.user)%></td>
+          <td><%= (vote.created_at).to_date%></td>
+        </tr>
+      <%end%>
+    </tbody>
+  </table>
+</section>
+</main>
